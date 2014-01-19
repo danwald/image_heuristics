@@ -6,5 +6,6 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 sudo apt-get update --quiet > /dev/null
-sudo apt-get install -y liblapack-dev liblapack3 liblapack3gf libgtk2.0-dev gfortran libblas3gf	liblapack3gf
+sudo apt-get install -y build-essential setuptool liblapack-dev liblapack3 liblapack3gf libgtk2.0-dev gfortran libblas3gf	liblapack3gf libopencv-dev libopencv-highgui-dev libcvaux-dev python-opencv python-setuptools python-virtualenv
+
  

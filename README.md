@@ -24,4 +24,8 @@ Installation
 git clone https://github.com/danwald/ih.git
 cd ih
 sudo requirements/os_requirements.sh
+mkdir ~/.envs
+virtualenv ~/.envs/ih
+source ~/.envs/ih/bin/activate
+pip install -r requirements/requirements.txt
 ```
