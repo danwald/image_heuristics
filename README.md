@@ -21,8 +21,8 @@ Installation
 --------------
 
 ```sh
-git clone https://github.com/danwald/ih.git
-cd ih
+git clone https://github.com/danwald/image_heuristics.git
+cd image_heuristics
 sudo requirements/os_requirements.sh
 mkdir ~/.envs
 virtualenv ~/.envs/ih
