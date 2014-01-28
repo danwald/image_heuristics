@@ -1,5 +1,5 @@
-import ImageInterface
-import QualityOpsInterface
+from image import ImageInterface
+from ops import QualityOpsInterface
 
 class OpenCVImage(ImageInterface, QualityOpsInterface):
     def __init__(self, filename):
