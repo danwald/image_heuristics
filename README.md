@@ -25,7 +25,7 @@ git clone https://github.com/danwald/image_heuristics.git
 cd image_heuristics
 sudo requirements/os_requirements.sh
 mkdir ~/.envs
-virtualenv ~/.envs/ih
+virtualenv --system-site-packages ~/.envs/ih
 source ~/.envs/ih/bin/activate
 pip install -r requirements/requirements.txt
 ```
