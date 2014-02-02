@@ -5,11 +5,16 @@ from ih.ocv_image import OpenCVImage
 
 class IntstantiationTest(unittest.TestCase):
     def setUp(self):
-        pass
+        self.OUTPUT_FILENAME = "/tmp/test.jpg"
+        self.image = OpenCVImage("images/lena.jpg")
 
     def test_load_image(self):
-        image = OpenCVImage("dummy")
+        self.image.load_image()
 
-    def test_save_image(self):
-        image = OpenCVImage("dummy")
-        image.save_image()
+    def test_save_image_with_old_filename(self):
+        self.image.save_image(self.OUTPUT_FILENAME)
+        image2 = OpenCVImage(self.OUTPUT_FILENAME)
+        image2.save_image()
+
+    def test_save_image_with_new_filename(self):
+        self.image.save_image(self.OUTPUT_FILENAME)

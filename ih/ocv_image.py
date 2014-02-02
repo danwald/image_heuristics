@@ -6,12 +6,13 @@ import cv
 class OpenCVImage(ImageInterface, QualityOpsInterface):
     def __init__(self, filename):
         self.filename = filename
+        self.image = None
 
     def load_image(self):
-        pass
+        self.image = cv2.imread(self.filename, cv2.IMREAD_ANYCOLOR)
  
     def save_image(self, filename=''):
-        pass
+        self.image.imwrite(filename if filename and len(filename) else self.filename)
 
     def is_color(self):
         pass
