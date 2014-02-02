@@ -1,6 +1,8 @@
 from image import ImageInterface
 from ops import QualityOpsInterface
 
+import cv
+
 class OpenCVImage(ImageInterface, QualityOpsInterface):
     def __init__(self, filename):
         self.filename = filename
@@ -8,7 +10,7 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
     def load_image(self):
         pass
  
-    def save_image(self):
+    def save_image(self, filename=''):
         pass
 
     def is_color(self):

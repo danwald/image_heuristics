@@ -7,5 +7,5 @@ class ImageInterface(object):
         pass
  
     @abstractmethod
-    def save_image():
+    def save_image(filename):
         pass
