@@ -1,9 +1,17 @@
+import cv2
+
 from image import ImageInterface
 from ops import QualityOpsInterface
 
-import cv
 
 class OpenCVImage(ImageInterface, QualityOpsInterface):
+    def _loaded(func):
+        def inner(self, *args, kwargs):
+            if not self.image:
+                self.load_image()
+            func(self, *args, kwargs)
+        return inner
+
     def __init__(self, filename):
         self.filename = filename
         self.image = None
@@ -11,8 +19,9 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
     def load_image(self):
         self.image = cv2.imread(self.filename, cv2.IMREAD_ANYCOLOR)
  
+    @_loaded
     def save_image(self, filename=''):
-        self.image.imwrite(filename if filename and len(filename) else self.filename)
+        cv2.imwrite(filename if filename and len(filename) else self.filename, self.image)
 
     def is_color(self):
         pass
