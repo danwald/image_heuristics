@@ -2,7 +2,6 @@ import unittest
 
 from ih.ocv_image import OpenCVImage
 
-
 class IntstantiationTest(unittest.TestCase):
     def setUp(self):
         self.OUTPUT_FILENAME = "/tmp/test.jpg"
