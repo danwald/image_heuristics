@@ -15,6 +15,7 @@ class IntstantiationTest(unittest.TestCase):
     def test_save_image_with_old_filename(self):
         self.image.save_image(self.OUTPUT_FILENAME)
         image2 = OpenCVImage(self.OUTPUT_FILENAME)
+        image2.load_image();
         image2.save_image()
 
     def test_save_image_with_new_filename(self):
