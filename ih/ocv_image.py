@@ -6,10 +6,10 @@ from ops import QualityOpsInterface
 
 class OpenCVImage(ImageInterface, QualityOpsInterface):
     def _loaded(func):
-        def inner(self, *args, kwargs):
+        def inner(self, *args, **kwargs):
             if not self.image:
                 self.load_image()
-            func(self, *args, kwargs)
+            func(self, *args, **kwargs)
         return inner
 
     def __init__(self, filename):
