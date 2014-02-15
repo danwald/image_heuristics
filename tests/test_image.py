@@ -4,8 +4,10 @@ from ih.ocv_image import OpenCVImage
 
 class IntstantiationTest(unittest.TestCase):
     def setUp(self):
+        self.COLOR_IMAGE_FILENAME = "images/lena.jpg"
+        self.GREY_IMAGE_FILENAME = "images/lena_grey.jpg"
         self.OUTPUT_FILENAME = "/tmp/test.jpg"
-        self.image = OpenCVImage("images/lena.jpg")
+        self.image = OpenCVImage(self.COLOR_IMAGE_FILENAME)
         self.image.load_image()
 
     def test_load_image(self):
@@ -21,9 +23,14 @@ class IntstantiationTest(unittest.TestCase):
         self.image.save_image(self.OUTPUT_FILENAME)
 
     def test_grey_image(self):
-        grey_image = OpenCVImage("images/lena_grey.jpg")
+        grey_image = OpenCVImage(self.GREY_IMAGE_FILENAME)
         grey_image.load_image()
         self.assertTrue(not grey_image.is_color())
 
     def test_color_image(self):
         self.assertTrue(self.image.is_color())
+
+    def test_signature(self):
+        image2 = OpenCVImage(self.COLOR_IMAGE_FILENAME)
+        image2.load_image()
+        self.assertTrue(self.image.get_signature() == image2.get_signature())

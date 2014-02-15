@@ -1,4 +1,5 @@
 import inspect
+import hashlib
 
 import cv2
 
@@ -33,4 +34,4 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
         pass
 
     def get_signature(self):
-        pass
+        return hashlib.sha1(self.image.data).hexdigest()
