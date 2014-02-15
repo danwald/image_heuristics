@@ -12,14 +12,16 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
        self.image = None
 
     def load_image(self):
-        print "loading %s"%(self.filename)
         self.image = cv2.imread(self.filename, -1)
  
     def save_image(self, filename=''):
         cv2.imwrite(filename if filename and len(filename) else self.filename, self.image)
 
     def is_color(self):
-        pass
+        try:
+            return self.image.shape[2] == 3
+        except IndexError:
+            return False
 
     def is_over_under_exposed(self):
         pass
