@@ -14,6 +14,8 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
 
     def load_image(self):
         self.image = cv2.imread(self.filename, -1)
+        if self.image == None:
+            raise(AttributeError("Failed to load image from '%s'"%(self.filename)))
  
     def save_image(self, filename=''):
         cv2.imwrite(filename if filename and len(filename) else self.filename, self.image)

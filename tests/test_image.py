@@ -1,4 +1,5 @@
 import unittest
+from nose.tools import *
 
 from ih.ocv_image import OpenCVImage
 
@@ -34,3 +35,9 @@ class IntstantiationTest(unittest.TestCase):
         image2 = OpenCVImage(self.COLOR_IMAGE_FILENAME)
         image2.load_image()
         self.assertTrue(self.image.get_signature() == image2.get_signature())
+    
+    @raises(AttributeError)
+    def test_bad_filename(self):
+        image2 = OpenCVImage("bad_image.jpg")
+        image2.load_image()
+
