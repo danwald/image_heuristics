@@ -1,6 +1,7 @@
 import inspect
 import hashlib
 
+import cv
 import cv2
 
 from image import ImageInterface
@@ -13,7 +14,7 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
        self.image = None
 
     def load_image(self):
-        self.image = cv2.imread(self.filename, -1)
+        self.image = cv2.imread(self.filename, cv.CV_LOAD_IMAGE_UNCHANGED)
         if self.image == None:
             raise(AttributeError("Failed to load image from '%s'"%(self.filename)))
  
