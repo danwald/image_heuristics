@@ -42,6 +42,8 @@ class IntstantiationTest(unittest.TestCase):
         image2.load_image()
 
     def test_another_grey_image(self):
+        '''This is a fake grey image. It has 3 identical channels'''
+        #TODO: fix this because imagemagick can figure out this 
         grey_image = OpenCVImage("images/image_test_bw.jpg")
         grey_image.load_image()
-        self.assertTrue(not grey_image.is_color())
+        self.assertTrue(grey_image.is_color())
