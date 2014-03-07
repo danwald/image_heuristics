@@ -41,3 +41,7 @@ class IntstantiationTest(unittest.TestCase):
         image2 = OpenCVImage("bad_image.jpg")
         image2.load_image()
 
+    def test_another_grey_image(self):
+        grey_image = OpenCVImage("images/image_test_bw.jpg")
+        grey_image.load_image()
+        self.assertTrue(not grey_image.is_color())
