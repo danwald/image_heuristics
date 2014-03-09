@@ -87,4 +87,5 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
         pass
 
     def get_signature(self):
+        #TODO: need MS's image dna magic
         return hashlib.sha1(self.image.data).hexdigest()
