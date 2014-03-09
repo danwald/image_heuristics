@@ -29,7 +29,6 @@ class IntstantiationTest(unittest.TestCase):
         self.assertTrue(not grey_image.is_color())
 
     def test_color_image(self):
-        set_trace()
         self.assertTrue(self.image.is_color())
 
     def test_signature(self):
