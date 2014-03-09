@@ -46,3 +46,18 @@ class IntstantiationTest(unittest.TestCase):
         grey_image = OpenCVImage("images/image_test_bw.jpg")
         grey_image.load_image()
         self.assertTrue(not grey_image.is_color())
+
+    def test_good_image_exposure(self):
+        good_image = OpenCVImage("images/image_test_real.jpg")
+        good_image.load_image()
+        over, under = good_image.is_over_under_exposed()
+        self.assertTrue(over == False) 
+        self.assertTrue(under == False)
+    
+    #TODO: need underexposed test
+    def test_over_exposed_image(self):
+        good_image = OpenCVImage("images/image_test_exposure.jpg")
+        good_image.load_image()
+        over, under = good_image.is_over_under_exposed()
+        self.assertTrue(over == True) 
+        self.assertTrue(under == False)

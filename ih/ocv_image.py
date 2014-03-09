@@ -3,9 +3,11 @@ import hashlib
 
 import cv
 import cv2
+import numpy as np
 
 from image import ImageInterface
 from ops import QualityOpsInterface
+
 
 
 class OpenCVImage(ImageInterface, QualityOpsInterface):
@@ -14,6 +16,9 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
        self.image = None
        self.gray_image = None
        self.original_color_image = None
+       self.over = None
+       self.under = None
+       self.blurry = None
 
     def load_image(self):
         self.image = cv2.imread(self.filename, cv.CV_LOAD_IMAGE_UNCHANGED)
@@ -53,7 +58,27 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
         return self.original_color_image
 
     def is_over_under_exposed(self):
-        pass
+        '''if the percentage of gray pixels in the respective percentage
+        of over/under slices of the histogram, report them as such''' 
+        #TODO: more accurate results with HSV?
+        #TODO: need more test data
+        EXPOSED_THRESHOLD_PERCENTAGE = 0.25
+        EXPOSED_BIN_PERCENTAGE = 0.02
+        HIST_BIN_COUNT_MIN = 0
+        HIST_BIN_COUNT = HIST_BIN_COUNT_MAX = 255
+
+        #TODO: hacky perquisite
+        self.is_color()
+        if self.over == None or self.under == None:
+            num_bins = int(round(HIST_BIN_COUNT * EXPOSED_BIN_PERCENTAGE))
+            hist, _ = np.histogram(self.gray_image, HIST_BIN_COUNT,
+                                   [HIST_BIN_COUNT_MIN, HIST_BIN_COUNT_MAX])
+
+            self.over = sum(hist[-1*num_bins:])/float(self.gray_image.size)\
+                            > EXPOSED_THRESHOLD_PERCENTAGE
+            self.under = sum(hist[:num_bins])/float(self.gray_image.size)\
+                             > EXPOSED_THRESHOLD_PERCENTAGE
+        return self.over, self.under
 
     def is_blurry(self):
         pass
