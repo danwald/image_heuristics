@@ -1,0 +1,13 @@
+#!upstart
+description "ih service"
+
+env USER=<%= node[:ih][:user] %>
+
+start on startup
+stop on shutdown
+
+respawn
+
+exec sudo -u $USER sh -c " cat \
+  /etc/ih/ih.conf 2>&1 >> \
+  <%= node[:ih][:log_dir] %>/ih.log"
