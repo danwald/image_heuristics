@@ -17,8 +17,29 @@
 # limitations under the License.
 #
 
-package "build-essential" do
-  action :install
+execute "apt-get-update" do
+  command "apt-get update -y"
+  ignore_failure true
+  action :nothing
+end
+
+package "update-notifier-common" do
+  notifies :run, resources(:execute => "apt-get-update"), :immediately
+end
+
+execute "apt-get-update-periodic" do
+  command "apt-get update"
+  ignore_failure true
+  only_if do
+   File.exists?('/var/lib/apt/periodic/update-success-stamp') &&
+   File.mtime('/var/lib/apt/periodic/update-success-stamp') < Time.now - 86400
+  end
+end
+
+%w{build-essential python-dev python-setuptools liblapack-dev liblapack3gf libgtk2.0-dev gfortran libblas3gf liblapack3gf libopencv-dev libopencv-highgui-dev libcvaux-dev python-opencv python-setuptools python-virtualenv}.each do |pkg|
+    package pkg do
+      action :install
+    end
 end
 
 user node[:ih][:user] do
