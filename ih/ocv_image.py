@@ -4,6 +4,7 @@ import hashlib
 import cv
 import cv2
 import numpy as np
+from PIL import Image, ImageFilter
 
 from image import ImageInterface
 from ops import QualityOpsInterface
