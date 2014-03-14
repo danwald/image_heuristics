@@ -5,6 +5,7 @@ import cv
 import cv2
 import numpy as np
 from PIL import Image, ImageFilter
+from ssim import compute_ssim
 
 from image import ImageInterface
 from ops import QualityOpsInterface
@@ -85,7 +86,17 @@ class OpenCVImage(ImageInterface, QualityOpsInterface):
         pass
 
     def is_noisy(self):
-        pass
+        '''compute ssim on denoised image (using MedianFilter) and if greater than
+        threshold the return false. 1.0 == no difference'''
+        #TODO: Get rid of PIL dependency
+        original = Image.open(self.filename)
+        denoised = original.filter(ImageFilter.MedianFilter(3))
+        similarity = compute_ssim(original, denoised)
+        if(similarity > 0.75):
+            return False
+        else:
+            return True
+
 
     def get_signature(self):
         #TODO: need MS's image dna magic

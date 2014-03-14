@@ -61,3 +61,13 @@ class IntstantiationTest(unittest.TestCase):
         over, under = good_image.is_over_under_exposed()
         self.assertTrue(over == True) 
         self.assertTrue(under == False)
+
+    def test_noisy_image(self):
+        noisy_image = OpenCVImage("images/image_test_noise.jpg")
+        noisy_image.load_image()
+        self.assertTrue(noisy_image.is_noisy() == True)
+
+    def test_non_noisy_image(self):
+        not_noisy_image = OpenCVImage("images/image_test_real.jpg")
+        not_noisy_image.load_image()
+        self.assertTrue(not_noisy_image.is_noisy() == False)
