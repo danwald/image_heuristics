@@ -42,10 +42,9 @@ end
     end
 end
 
-user node[:ih][:user] do
+user_account node[:ih][:user] do
   action :create
-  system true
-  shell "/bin/false"
+  shell "/bin/bash"
 end
 
 directory node[:ih][:dir] do
@@ -55,7 +54,7 @@ directory node[:ih][:dir] do
 end
 
 directory node[:ih][:data_dir] do
-  owner "ih"
+  owner node[:ih][:user]
   mode "0755"
   action :create
 end
@@ -66,10 +65,10 @@ directory node[:ih][:log_dir] do
   action :create
 end
 
-#remote_file "#{Chef::Config[:file_cache_path]}/ih.tar.gz" do
-#  source "https://github.com/antirez/ih/tarball/v2.0.4-stable"
-#  action :create_if_missing
-#end
+remote_file "#{Chef::Config[:file_cache_path]}/master.zip" do
+  source "https://github.com/danwald/image_heuristics/archive/master.zip"
+  action :create_if_missing
+end
 
 bash "compile_ih_source" do
   cwd Chef::Config[:file_cache_path]

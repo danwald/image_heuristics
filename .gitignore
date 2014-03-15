@@ -1,3 +1,5 @@
 *.swp
 external/*
 *.pyc
+.vagrant/*
+Berksfile.lock
