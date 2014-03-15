@@ -78,10 +78,17 @@ bash "compile_ih_source" do
   creates "/usr/local/bin/ih-service"
 end
 
-service "ih" do
+service "#{node[:ih][:name]}" do
   provider Chef::Provider::Service::Upstart
   subscribes :restart, resources(:bash => "compile_ih_source")
   supports :restart => true, :start => true, :stop => true
+end
+
+python_virtualenv node[:ih][:env_dir] do
+  owner node[:ih][:user]
+  group node[:ih][:user]
+  options "--system-site-packages"
+  action :create
 end
 
 template "ih.conf" do

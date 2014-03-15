@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      chef.cookbooks_path = "cookbooks"
      chef.add_recipe "ih"
      chef.add_recipe "user"
+     chef.add_recipe "python"
      chef.log_level = :debug
   end 
 end
