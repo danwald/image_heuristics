@@ -1,5 +1,5 @@
 upstream ih {
-    server unix:/run/uwsgi/app/ih/socket;
+    server unix:/run/uwsgi/ih/socket;
 }
  
 server {

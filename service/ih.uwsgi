@@ -1,7 +1,7 @@
 [uwsgi]
  
 master-as-root = true
-socket = /run/uwsgi/app/ih/socket
+socket = /run/uwsgi/ih/socket
 chdir = /ih
 master = true
 plugins = python
