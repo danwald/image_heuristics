@@ -9,7 +9,7 @@ RUN apt-get install -y build-essential python-dev python-setuptools \
                        libc-dev nginx uwsgi vim libtiff4-dev libjpeg8-dev zlib1g-dev \
                        libfreetype6-dev liblcms1-dev libwebp-dev
 
-RUN git clone https://github.com/danwald/image_heuristics.git -o /ih
+RUN git clone https://github.com/danwald/image_heuristics.git -o ih -b dockerize
 RUN cd  ih
 RUN git checkout -b dockerize origin/dockerize
 RUN pip install -r requirements/dev.txt
