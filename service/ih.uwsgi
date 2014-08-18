@@ -1,0 +1,14 @@
+[uwsgi]
+ 
+master-as-root = true
+socket = /run/uwsgi/app/ih/socket
+chdir = /ih
+master = true
+plugins = python
+module = service
+file = app.py
+uid = www-data
+gid = www-data
+chmod-socket = 664
+chown-socket = www-data:www-data
+vacuum=true
