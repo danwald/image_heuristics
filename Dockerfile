@@ -11,7 +11,7 @@ RUN apt-get install -y build-essential python-dev python-setuptools \
 
 RUN git clone https://github.com/danwald/image_heuristics.git ih -b dockerize
 RUN cd  ih
-RUN pip install -r requirements/dev.txt
+RUN pip install -r requirements/requirements.txt
 RUN ln -sf `pwd`/service/ih.uwsgi /etc/uwsgi/apps-available/ih.ini
 RUN ln -sf `pwd`/service/ih.uwsgi /etc/uwsgi/apps-enabled/ih.ini
 RUN sudo service uwsgi restart
