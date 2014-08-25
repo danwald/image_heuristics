@@ -10,11 +10,11 @@ RUN apt-get install -y build-essential python-dev python-setuptools \
                        libfreetype6-dev liblcms1-dev libwebp-dev
 
 RUN git clone https://github.com/danwald/image_heuristics.git ih -b dockerize
-RUN cd  ih
-RUN pip install -r requirements/requirements.txt
-RUN ln -sf `pwd`/service/ih.uwsgi /etc/uwsgi/apps-available/ih.ini
-RUN ln -sf `pwd`/service/ih.uwsgi /etc/uwsgi/apps-enabled/ih.ini
-RUN sudo service uwsgi restart
-RUN ln -sf `pwd`/service/ih.nginx /etc/nginx/conf.d/ih.conf
-RUN sudo service nginx restart
+RUN pip install -r /ih/requirements/requirements.txt
+RUN ln -sf /ih/service/ih.uwsgi /etc/uwsgi/apps-available/ih.ini
+RUN ln -sf /ih/service/ih.uwsgi /etc/uwsgi/apps-enabled/ih.ini
+RUN service uwsgi restart
+RUN ln -sf /ih/service/ih.nginx /etc/nginx/conf.d/ih.conf
+RUN service nginx restart
+WORKDIR /ih
 EXPOSE 80
