@@ -2,7 +2,7 @@
  
 master-as-root = true
 socket = /run/uwsgi/ih/socket
-chdir = /ih
+chdir = /opt/ih
 master = true
 plugins = python
 module = service
@@ -11,4 +11,4 @@ uid = www-data
 gid = www-data
 chmod-socket = 664
 chown-socket = www-data:www-data
-vacuum=true
+daemonize = true
