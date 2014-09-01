@@ -14,8 +14,8 @@ RUN apt-get install -y build-essential python-dev python-setuptools \
 RUN git clone https://github.com/danwald/image_heuristics.git ih -b dockerize
 RUN pip install -r /opt/ih/requirements/requirements.txt
 RUN ln -sf /opt/ih/service/ih.nginx /etc/nginx/sites-available/ih.conf
-RUN ln -sf /opt/ih/service/ih.nginx /etc/nginx/site-enabled/ih
-RUN rm /etc/nginx/site-enabled/default
+RUN ln -sf /opt/ih/service/ih.nginx /etc/nginx/sites-enabled/ih
+RUN rm /etc/nginx/sites-enabled/default
 RUN service nginx restart
 WORKDIR /opt/ih
 RUN uwsgi --ini service/ih.uwsgi
