@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Danny Crasto <danwald79@gmail.com>
 
-RUN cd /opt
+WORKDIR /opt
 RUN mkdir -p /var/run/uwsgi/ih
 RUN apt-get update
 RUN apt-get install -y build-essential python-dev python-setuptools \
