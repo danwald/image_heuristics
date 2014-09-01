@@ -1,12 +1,13 @@
 [uwsgi]
  
 master-as-root = true
+processes = 1
 socket = /run/uwsgi/ih/socket
-chdir = /opt/ih
+logger = file:/var/log/ih.uwsgi.log
 master = true
-plugins = python
-module = service
-file = app.py
+pythonpath = /opt/ih
+file = service/app.py
+callable = app
 uid = www-data
 gid = www-data
 chmod-socket = 664

@@ -6,7 +6,7 @@ server {
     listen [::]:80;
     listen 80;
     server_name danwald.ih.com;
-    root /ih;
+    root /opt/ih;
  
     location / {
         try_files $uri @uwsgi;

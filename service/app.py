@@ -1,10 +1,7 @@
 #!/usr/bin/python
 
 import bottle
-import os
-
-import bottle
-from bottle import template
+from bottle import default_app
 import os
 
 
@@ -16,4 +13,4 @@ def show_index():
         return 'Hello, can i has some images?'
 
 if __name__ == '__main__':
-        bottle.run(app=app, host='0.0.0.0', port=8080) ##host='0.0.0.0', which makes visitable outside.
+        app.run(host='0.0.0.0', port=8080, debug=True) ##host='0.0.0.0', which makes visitable outside.
