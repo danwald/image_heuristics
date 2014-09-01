@@ -1,0 +1,20 @@
+upstream ih {
+    server unix:/run/uwsgi/ih/socket;
+}
+ 
+server {
+    listen [::]:80;
+    listen 80;
+    server_name danwald.ih.com;
+    root /opt/ih;
+ 
+    location / {
+        try_files $uri @uwsgi;
+    }
+ 
+    location @uwsgi {
+        include uwsgi_params;
+        uwsgi_pass ih;
+    }
+}
+
