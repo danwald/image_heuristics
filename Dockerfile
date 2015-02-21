@@ -10,7 +10,7 @@ RUN apt-get install -y build-essential python-dev python-setuptools liblapack-de
                        git-core libc-dev nginx vim libtiff4-dev libjpeg8-dev zlib1g-dev\
                        libfreetype6-dev liblcms1-dev libwebp-dev byobu
 
-RUN git clone https://github.com/danwald/image_heuristics.git ih -b dockerize
+RUN git clone https://github.com/danwald/image_heuristics.git ih
 RUN pip install -r /opt/ih/requirements/requirements.txt
 RUN ln -sf /opt/ih/service/ih.nginx /etc/nginx/sites-available/ih.conf
 RUN ln -sf /opt/ih/service/ih.nginx /etc/nginx/sites-enabled/ih
