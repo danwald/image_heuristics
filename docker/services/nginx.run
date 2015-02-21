@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ln -sf /opt/ih/service/ih.nginx /etc/nginx/sites-enabled/ih.conf
+
+exec /usr/sbin/nginx -c /etc/nginx/nginx.conf -g "daemon off;"
