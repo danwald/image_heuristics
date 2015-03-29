@@ -2,9 +2,11 @@
  
 master-as-root = true
 processes = 1
+threads = 2
 socket = /run/uwsgi/ih/socket
 logger = file:/var/log/ih.uwsgi.log
 master = true
+chdir = /opt/ih
 pythonpath = /opt/ih
 file = service/app.py
 callable = app
