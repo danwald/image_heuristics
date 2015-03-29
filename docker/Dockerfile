@@ -11,12 +11,16 @@ RUN apt-get update && apt-get install -y build-essential python-dev python-setup
 
 RUN git clone https://github.com/danwald/image_heuristics.git ih -b phusioning &&\
         pip install -r /opt/ih/requirements/requirements.txt &&\
-        mkdir -p /etc/service/ih && mkdir -p /etc/service/nginx &&\
-        cp /opt/ih/docker/services/uwsgi.run /etc/service/ih/run;\
-        cp /opt/ih/docker/services/nginx.run /etc/service/nginx/run;\
-        chmod +x /etc/service/ih/run;\
-        chmod +x /etc/service/nginx/run;\
-        rm /etc/nginx/sites-enabled/default
+        mkdir -p /etc/service/ih &&\
+        mkdir -p /etc/service/nginx &&\
+        mkdir -p /run/uwsgi/ih &&\
+        cp /opt/ih/docker/services/uwsgi.run /etc/service/ih/run &&\
+        cp /opt/ih/docker/services/nginx.run /etc/service/nginx/run &&\
+        chmod +x /etc/service/ih/run &&\
+        chmod +x /etc/service/nginx/run &&\
+        rm /etc/nginx/sites-enabled/default &&\
+        sv start nginx &&\
+        sv start ih;
 
 EXPOSE 80
 

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec uwsgi --ini /opt/ih/service/ih.uwsgi
+exec /usr/local/bin/uwsgi --ini /opt/ih/service/ih.uwsgi
