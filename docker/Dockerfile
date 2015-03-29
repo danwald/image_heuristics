@@ -20,9 +20,7 @@ RUN git clone https://github.com/danwald/image_heuristics.git ih &&\
         cp /opt/ih/docker/services/nginx.run /etc/sv/nginx/run &&\
         chmod +x /etc/sv/nginx/run &&\
         ln -s /etc/sv/nginx /etc/service &&\
-        rm /etc/nginx/sites-enabled/default &&\
-        sv start nginx &&\
-        sv start ih;
+        rm /etc/nginx/sites-enabled/default;
 
 EXPOSE 80
 
