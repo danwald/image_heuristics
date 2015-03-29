@@ -9,15 +9,17 @@ RUN apt-get update && apt-get install -y build-essential python-dev python-setup
                       git-core libc-dev nginx vim libtiff4-dev libjpeg8-dev zlib1g-dev\
                       libfreetype6-dev liblcms1-dev libwebp-dev byobu
 
-RUN git clone https://github.com/danwald/image_heuristics.git ih -b phusioning &&\
+RUN git clone https://github.com/danwald/image_heuristics.git ih &&\
         pip install -r /opt/ih/requirements/requirements.txt &&\
-        mkdir -p /etc/service/ih &&\
-        mkdir -p /etc/service/nginx &&\
         mkdir -p /run/uwsgi/ih &&\
-        cp /opt/ih/docker/services/uwsgi.run /etc/service/ih/run &&\
-        cp /opt/ih/docker/services/nginx.run /etc/service/nginx/run &&\
-        chmod +x /etc/service/ih/run &&\
-        chmod +x /etc/service/nginx/run &&\
+        mkdir /etc/sv/ih &&\
+        cp /opt/ih/docker/services/uwsgi.run /etc/sv/ih/run &&\
+        chmod +x /etc/sv/ih/run &&\
+        ln -s /etc/sv/ih /etc/service &&\
+        mkdir /etc/sv/nginx &&\
+        cp /opt/ih/docker/services/nginx.run /etc/sv/nginx/run &&\
+        chmod +x /etc/sv/nginx/run &&\
+        ln -s /etc/sv/nginx /etc/service &&\
         rm /etc/nginx/sites-enabled/default &&\
         sv start nginx &&\
         sv start ih;
