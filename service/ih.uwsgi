@@ -14,4 +14,4 @@ uid = www-data
 gid = www-data
 chmod-socket = 664
 chown-socket = www-data:www-data
-daemonize = false
+stats = :1717
